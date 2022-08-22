@@ -41,7 +41,7 @@ jobs:
         run: echo ${{ steps.buildx.outputs.platforms }}
 
       - name: Build image
-        run: docker buildx build --push --file Dockerfile --tag $IMAGE_NAME:${{ github.sha }} --platform linux/amd64,linux/arm64 .
+        run: docker buildx build --load --file Dockerfile --tag $IMAGE_NAME:${{ github.sha }} --platform linux/amd64,linux/arm64 .
 
 #      - name: Run Trivy vulnerability scanner and dump results
 #        uses: aquasecurity/trivy-action@master
