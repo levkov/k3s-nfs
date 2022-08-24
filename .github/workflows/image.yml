@@ -136,15 +136,15 @@ jobs:
         with:
           sarif_file: "trivy-results.sarif"
 
-      - name: Run Trivy vulnerability scanner (fail build if any)
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: "${{ env.IMAGE_NAME }}:${{ env.HASH_VERSION }}-${{ env.SAFE_ARCH }}"
-          exit-code: "1"
-          vuln-type: "os,library"
-          severity: "CRITICAL,HIGH"
-          format: "sarif"
-          output: "trivy-results.sarif"
+#      - name: Run Trivy vulnerability scanner (fail build if any)
+#        uses: aquasecurity/trivy-action@master
+#        with:
+#          image-ref: "${{ env.IMAGE_NAME }}:${{ env.HASH_VERSION }}-${{ env.SAFE_ARCH }}"
+#          exit-code: "1"
+#          vuln-type: "os,library"
+#          severity: "CRITICAL,HIGH"
+#          format: "sarif"
+#          output: "trivy-results.sarif"
 
       - name: Tag and push image
         if: ${{ github.event_name != 'pull_request' }}
