@@ -101,12 +101,7 @@ jobs:
             ${{ runner.os }}-buildx-${{ env.SAFE_ARCH }}-
 
       - name: Login to ghcr registry
-        uses: docker/login-action@v1
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          registry: ghcr.io
-          username: ${{ secrets.GH_USERNAME }}
-          password: ${{ secrets.GH_ACCESS_TOKEN }}
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build image
         uses: docker/build-push-action@v2
@@ -163,11 +158,7 @@ jobs:
           docker load --input image_linuxamd64/linuxamd64.tar
           docker load --input image_linuxarm64/linuxarm64.tar
       - name: Login to ghcr registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ secrets.GH_USERNAME }}
-          password: ${{ secrets.GH_ACCESS_TOKEN }}
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Create and push manifest
         run: |
