@@ -12,13 +12,15 @@ on:
 
   pull_request:
 
+env:
+  IMAGE_NAME: k3s-nfs
+
 jobs:
   build:
     name: Build Docker image (${{ matrix.arch }})
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: k3s-nfs
-      IMAGE_TAG: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+      IMAGE_TAG: ghcr.io/${{ github.repository_owner }}/k3s-nfs
     strategy:
       matrix:
         arch: [linux/amd64, linux/arm64]
