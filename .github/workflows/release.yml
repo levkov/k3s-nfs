@@ -13,7 +13,7 @@ jobs:
     name: "Release"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "marvinpinto/action-automatic-releases@1.21"
+      - uses: "marvinpinto/action-automatic-releases@v1.21"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
