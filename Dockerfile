@@ -1,7 +1,7 @@
-FROM alpine:3.16.2
+FROM debian:bullseye-slim
 
-RUN apk add --no-cache iptables ip6tables nfs-utils; \
-    echo 'hosts: files dns' > /etc/nsswitch.conf
+RUN apt-get update && \
+    apt-get install nfs-common -y
 
 ARG VERSION="dev"
 COPY --from=rancher/k3s:v1.24.9-k3s1 /bin /bin
