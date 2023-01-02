@@ -4,7 +4,7 @@ RUN apk add --no-cache iptables ip6tables nfs-utils; \
     echo 'hosts: files dns' > /etc/nsswitch.conf
 
 ARG VERSION="dev"
-COPY --from=rancher/k3s:v1.21.13-k3s1 /bin /bin
+COPY --from=rancher/k3s:v1.24.9-k3s1 /bin /bin
 
 RUN mkdir -p /etc && \
     echo 'hosts: files dns' > /etc/nsswitch.conf && \
